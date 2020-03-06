@@ -1,0 +1,244 @@
+﻿.icon-active {
+    background: #414174;
+    border-radius: 3px;
+    box-shadow: 1px 1px 3px 0px #737373;
+    color: white;
+}
+
+.form-group label,
+.form-group pre {
+    font-size: 13px !important;
+    font-weight: 700 !important;
+}
+
+.font-size-25 {
+    font-size: 25px;
+}
+
+.scroll-500 {
+    height: 525px;
+    overflow-y: scroll;
+}
+
+.is-invalid-v2 {
+    border-color: #fd397a !important;
+}
+
+.sms-border {
+    border: 1px solid #ebedf2;
+    border-radius: 4px;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.th-5 {
+    width: 5% !important;
+    max-width: 5% !important;
+    min-width: 5% !important;
+}
+
+.th-10 {
+    width: 10% !important;
+    max-width: 10% !important;
+    min-width: 10% !important;
+}
+
+.th-12_5 {
+    width: 12.5% !important;
+    max-width: 12.5% !important;
+    min-width: 12.5% !important;
+}
+
+.th-15 {
+    width: 15% !important;
+    max-width: 15% !important;
+    min-width: 15% !important;
+}
+
+.th-20 {
+    width: 20% !important;
+    max-width: 20% !important;
+    min-width: 20% !important;
+}
+
+.th-25 {
+    width: 25% !important;
+    max-width: 25% !important;
+    min-width: 25% !important;
+}
+
+.th-30 {
+    width: 30% !important;
+    max-width: 30% !important;
+    min-width: 30% !important;
+}
+
+.th-40 {
+    width: 40% !important;
+    max-width: 40% !important;
+    min-width: 40% !important;
+}
+
+.th-45 {
+    width: 45% !important;
+    max-width: 45% !important;
+    min-width: 45% !important;
+}
+
+.th-50 {
+    width: 50% !important;
+    max-width: 50% !important;
+    min-width: 50% !important;
+}
+
+.th-55 {
+    width: 55% !important;
+    max-width: 55% !important;
+    min-width: 55% !important;
+}
+
+.th-60 {
+    width: 60% !important;
+    max-width: 60% !important;
+    min-width: 60% !important;
+}
+
+.th-65 {
+    width: 65% !important;
+    max-width: 65% !important;
+    min-width: 65% !important;
+}
+
+.th-70 {
+    width: 70% !important;
+    max-width: 70% !important;
+    min-width: 70% !important;
+}
+
+.th-75 {
+    width: 70% !important;
+    max-width: 70% !important;
+    min-width: 70% !important;
+}
+
+.th-80 {
+    width: 80% !important;
+    max-width: 80% !important;
+    min-width: 80% !important;
+}
+
+.th-85 {
+    width: 85% !important;
+    max-width: 85% !important;
+    min-width: 85% !important;
+}
+
+.th-90 {
+    width: 90% !important;
+    max-width: 90% !important;
+    min-width: 90% !important;
+}
+
+.th-95 {
+    width: 95% !important;
+    max-width: 95% !important;
+    min-width: 95% !important;
+}
+
+.fa-sort {
+    float: left;
+}
+
+.fa-sort-up {
+    float: left;
+}
+
+.fa-sort-down {
+    float: left;
+}
+
+.per-inline {
+    white-space: pre-line !important;
+    width: 500px;
+    overflow-wrap: break-word;
+    color: #646c9a
+}
+
+.select2-container--default.select2-container--focus .select2-selection--multiple,
+.select2-container--default.select2-container--open .select2-selection--multiple,
+.select2-container--default .select2-selection--multiple {
+    height: auto !important;
+}
+
+@media print {
+    .per-inline {
+        white-space: pre-line !important;
+        width: 500px;
+        border: none !important;
+        outline: none !important;
+        overflow-wrap: break-word;
+        color: #646c9a
+    }
+}
+
+.error-color {
+    color: #fd397a
+}
+
+.select2-container--disabled .select2-selection__arrow:before {
+    content: ''!important
+}
+
+.select2-container--disabled {
+    border: 1px solid #ebedf2;
+    border-radius: 4px;
+}
+
+.form-control:disabled,
+.form-control[readonly] {
+    background-color: #ffffff !important;
+    opacity: 1;
+}
+
+.cursor-not-allowed {
+    cursor: not-allowed;
+}
+
+.text-line-through {
+    text-decoration-line: line-through;
+}
+
+
+/*******************************************************/
+
+
+/*******************************************************/
+
+
+/*************        MAHMOUD EDIT        **************/
+
+
+/*******************************************************/
+
+
+/*******************************************************/
+
+.datepicker {
+    z-index: 1200 !important;
+}
+
+.StudentName {
+    color: #5578eb !important;
+    font-weight: bolder !important;
+    margin: 0 10px 0 10px !important;
+}
+
+
+/**Animated Overide*/
+
+.td-input {
+    padding-right: 4px !important;
+    padding-left: 4px !important;
+}

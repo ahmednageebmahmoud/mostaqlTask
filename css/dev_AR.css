@@ -1,0 +1,175 @@
+﻿div#ng_table_1_filter {
+    float: right;
+}
+
+.dt-buttons.btn-group {
+    float: left
+}
+
+.tree-actions {
+    float: left
+}
+
+.input-disabled:disabled {
+    background: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    cursor: auto;
+}
+
+select.input-disabled:disabled {
+    cursor: default;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.help-block {
+    color: red
+}
+
+.my-li-active {
+    background: #a0d468 !important;
+    color: #fff !important;
+}
+
+.sms-table tbody tr td span,
+.sms-table tbody tr td pre {
+    color: #6c7293;
+}
+
+.sms-table .sms-sort-arrow {
+    font-size: 0.6rem;
+    color: #5d78ff;
+    position: relative;
+    float: left;
+}
+
+.sms-table .sms-sort-field {
+    color: #6c7293;
+    cursor: pointer
+}
+
+.error-items {
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 80%;
+    color: #fd397a;
+    font-weight: 400;
+}
+
+.sms-table-error {
+    border: 2px solid #fd397a;
+}
+
+
+/*For Printing*/
+
+@media print {
+    input {
+        background: none !important;
+        border: none !important;
+        outline: none !important;
+    }
+    .hidePrint {
+        display: none
+    }
+    @page {
+        margin: 15px
+    }
+    body {
+        height: 100%;
+        width: 100%;
+    }
+    pre {
+        outline: none;
+        border: none
+    }
+    .th-5 {
+        width: 5% !important;
+        max-width: 5% !important;
+    }
+    .th-10 {
+        width: 10% !important;
+        max-width: 10% !important;
+    }
+    .th-15 {
+        width: 15% !important;
+        max-width: 15% !important;
+    }
+    .th-20 {
+        width: 20% !important;
+        max-width: 20% !important;
+    }
+    .th-25 {
+        width: 25% !important;
+        max-width: 25% !important;
+    }
+    .th-30 {
+        width: 30% !important;
+        max-width: 30% !important;
+    }
+    .th-40 {
+        width: 40% !important;
+        max-width: 40% !important;
+    }
+    .th-45 {
+        width: 45% !important;
+        max-width: 45% !important;
+    }
+    .th-50 {
+        width: 50% !important;
+        max-width: 50% !important;
+    }
+    .th-55 {
+        width: 55% !important;
+        max-width: 55% !important;
+    }
+    .th-60 {
+        width: 60% !important;
+        max-width: 60% !important;
+    }
+    .th-65 {
+        width: 65% !important;
+        max-width: 65% !important;
+    }
+    .th-70 {
+        width: 70% !important;
+        max-width: 70% !important;
+    }
+    .th-75 {
+        width: 70% !important;
+        max-width: 70% !important;
+    }
+    .th-80 {
+        width: 80% !important;
+        max-width: 80% !important;
+    }
+    .th-85 {
+        width: 85% !important;
+        max-width: 85% !important;
+    }
+    .th-90 {
+        width: 90% !important;
+        max-width: 90% !important;
+    }
+    .th-95 {
+        width: 95% !important;
+        max-width: 95% !important;
+    }
+}
+
+.bootstrap-timepicker-widget {
+    z-index: 5000;
+}
+
+pre {
+    font-family: Poppins
+}
+
+.blockUI {
+    z-index: 3000 !important;
+}
+
+table tbody tr:hover {
+    border-right: 2px solid #747a9a;
+}

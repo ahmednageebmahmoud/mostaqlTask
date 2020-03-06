@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حساب رواتب الموظفين</title>
+
+    <!--bootstrap-->
+    <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.rtl.min.css">
+
+    <!--fontawesome-->
+    <link rel="stylesheet" href="./assets/fontawesome/css/solid.min.css">
+
+    <!--My Css-->
+    <link rel=" stylesheet " href="./css/dev.css ">
+    <link rel="stylesheet " href="./css/dev_AR.css ">
+
+    <!--Config-->
+    <script>
+        LangIsEn = false;
+    </script>
+</head>
+
+<body ng-app="ngApp" ng-controller="indexController">
+
+    <div class="container ">
+        <!--Title-->
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">حساب رواتب الموظفين</h1>
+                <p class="lead">نقوم هنا بحساب رواتب الموظفين على مدار الشهر .</p>
+            </div>
+        </div>
+
+
+        <div class="form-row">
+            <div class="col-3 form-group">
+                <label>اختر اللف الايكسيل</label>
+                <br>
+                <upload-files n0g-up-accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                </upload-files>
+            </div>
+
+            <!--Form-->
+            <form class="col " ng-submit="reCalculate()">
+                <div class="form-row">
+                    <div class="col form-group">
+                        <label for="inputEmail4">عدد الساعات الرسمية</label>
+                        <input type="number" class="form-control" id="inputEmail4" ng-model="houresRequierd" step="1" />
+                    </div>
+                    <div class="col form-group">
+                        <label for="month">الشهر</label>
+                        <input type="text" class="form-control" id="month" ng-model="month" />
+                    </div>
+
+                    <!-- 
+                    <div class="col form-group">
+                        <label for="hourSalary">راتب الساعة</label>
+                        <input type="number" class="form-control" id="hourSalary" ng-model="hourSalary" step="0.05" />
+                    </div>
+                <div class="col-6 form-group">
+                        <label for="ifAllowCultBasicsSalry">   طريقة حساب راتب الموظف على الساعات الاساسية</label>
+                        <select class="custom-select form-control" id="ifAllowCultBasicsSalry" ng-model="ifAllowCultBasicsSalry">
+                            <option value="true"> بناء على إجمالى الساعات الاساسية</option>
+                            <option value="false">سوف تدخل يدويا لكل موظف</option>
+                          </select>
+                    </div> -->
+                    <div class="col form-group" style="padding-top: 30px;">
+                        <input type="submit" class="btn btn-outline-success w-100" value="إحسب مرة آخرى" />
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <div class="col-6 alert alert-danger alert-dismissible fade show form-group" role="alert" ng-repeat="e in errors">
+                {{e}}.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+
+
+        <hr>
+
+        <!--Result-->
+        <div class="form-group">
+
+            <!--SMS Print,Excel,PDF,Search,....-->
+            <sms-buttons-search ng-sms-tableid="ng_table_1" ng-sms-search-model="textSearch"></sms-buttons-search>
+
+            <table class="table sms-table table-hover" id="ng_table_1">
+                <thead>
+                    <tr>
+                        <th class="th-15 ">
+                            <sms-sort ng-sms-fop="employeeSalariesFop" ng-sms-field-name="employeeName" ng-sms-resource="الموظف"></sms-sort>
+                        </th>
+                        <th>
+                            <sms-sort ng-sms-fop="employeeSalariesFop" ng-sms-field-name="hours" ng-sms-resource="الساعات">
+                            </sms-sort>
+                        </th>
+                        <th>
+                            <sms-sort ng-sms-fop="employeeSalariesFop" ng-sms-field-name="minutes" ng-sms-resource="الدقائق"></sms-sort>
+                        </th>
+                        <th>
+                            <sms-sort ng-sms-fop="employeeSalariesFop" ng-sms-field-name="totalBasicHours" ng-sms-resource="اجمالى الساعات"></sms-sort>
+                        </th>
+                        <th>
+                            <sms-sort ng-sms-fop="employeeSalariesFop" ng-sms-field-name="totalOverHours" ng-sms-resource="اجمالى ساعات الوقت الاضافى"></sms-sort>
+                        </th>
+                        <th>
+                            <sms-sort ng-sms-fop="employeeSalariesFop" ng-sms-field-name="basicSalary" ng-sms-resource="الراتب الاساسى"></sms-sort>
+                        </th>
+                        <th>
+                            <sms-sort ng-sms-fop="employeeSalariesFop" ng-sms-field-name="alternativeFoodSalary" ng-sms-resource="راتب بدل الطعام"></sms-sort>
+                        </th>
+                        <th>
+                            <sms-sort ng-sms-fop="employeeSalariesFop" ng-sms-field-name="totalBasicSalary" ng-sms-resource="اجمالى الراتب"></sms-sort>
+                        </th>
+
+                        <th>
+                            <sms-sort ng-sms-fop="employeeSalariesFop" ng-sms-field-name="hourSalary" ng-sms-resource="راتب الساعة"></sms-sort>
+                        </th>
+                        <th>
+                            <sms-sort ng-sms-fop="employeeSalariesFop" ng-sms-field-name="totalOverHoursSalary" ng-sms-resource="راتب الساعات الاضافية"></sms-sort>
+                        </th>
+
+                        <th>
+                            <sms-sort ng-sms-fop="employeeSalariesFop" ng-sms-field-name="discount" ng-sms-resource="خصم المكتب"></sms-sort>
+                        </th>
+                        <th>
+                            <sms-sort ng-sms-fop="employeeSalariesFop" ng-sms-field-name="netSalry" ng-sms-resource="الراتب المستحق"></sms-sort>
+                        </th>
+                        <th class="hidePrint">
+                            <sms-sort ng-sms-resource="طباعة"></sms-sort>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="x in employees|customFilter:textSearch:employeeSalariesFop: 'employeeSalariesFop':this |orderBy:employeeSalariesFop.sort.propName:employeeSalariesFop.sort.reverse | limitTo:employeeSalariesFop.paging.pagingLimt.take:employeeSalariesFop.paging.pagingLimt.skip
+        track by $index ">
+
+                        <td><span>{{x.employeeName}}</span></td>
+                        <!--الساعات-->
+                        <td><span>{{x.hours}}</span></td>
+                        <!--الدقائق-->
+                        <td><span>{{x.minutes}}</span></td>
+                        <!--إجمالي الساعات-->
+                        <td><span>{{x.totalBasicHours}}</span></td>
+                        <!--الفرق-->
+                        <td><span>{{x.totalOverHours}}</span></td>
+                        <!--الراتب الاساسى-->
+                        <td class="td-input ">
+                            <input type="number" class="form-control hidePrint" min="0" ng-model="x.basicSalary" ng-change="cultHoureSalary(x)" />
+                            <span ng-show="false">{{x.basicSalary|currency:''}}</span>
+                        </td>
+                        <!--بدل طعام-->
+                        <td class="td-input ">
+                            <input type="number" class="form-control hidePrint" min="0" ng-model="x.alternativeFoodSalary" ng-change="reCalculate(x)" />
+                            <span ng-show="false">{{x.alternativeFoodSalary|currency:''}}</span>
+                        </td>
+                        <!--اجمالى الراتب-->
+                        <td>
+                            <!-- <input type="number" class="form-control hidePrint" min="0" ng-model="x.totalBasicSalary" ng-change="x.netSalry=  toFixed((x.totalOverHoursSalary +x.totalBasicSalary) - x.discount)" /> -->
+                            <span> {{x.totalBasicSalary|currency:''}}</span>
+                        </td>
+                        <!--راتب الساعة-->
+                        <td><span>{{x.hourSalary}}</span></td>
+                        <!--اوفر تايم-->
+                        <td><span>{{x.totalOverHoursSalary|currency:''}}</span></td>
+
+                        <!--خصم المكتب-->
+                        <td class="td-input ">
+                            <input type="number" class="form-control hidePrint" min="0" ng-model="x.discount" ng-change="x.netSalry=  toFixed((x.totalOverHoursSalary +x.totalBasicSalary) - x.discount)" />
+                            <label ng-show="false">{{x.discount|currency:''}}</label>
+                        </td>
+                        <!--الصافي-->
+                        <td><span>{{x.netSalry|currency:''}}</span></td>
+                        <td class="hidePrint">
+                            <button class="btn btn-outline-dark " ng-click="print(x) ">
+                                طباعة
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--Paging -->
+            <sms-paging-select ng-sms-fop="employeeSalariesFop"></sms-paging-select>
+            <sms-paging ng-sms-fop="employeeSalariesFop"></sms-paging>
+        </div>
+    </div>
+
+    <!--مجرد مثال فقط-->
+    <div class="container p-2" id="employeeInformation" ng-show=false>
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">راتب شهر مارس</h1>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-6">
+                <p><b>اسم الموظف:</b> {{employeePrinting.employeeName}}</p>
+            </div>
+            <div class="col-6">
+                <p><b>الفرع:</b> {{employeePrinting.branch}}</p>
+            </div>
+            <div class="col-6">
+                <p><b>	الساعات:</b> {{employeePrinting.hours}}</p>
+            </div>
+            <div class="col-6">
+                <p><b>الدقائق:</b> {{employeePrinting.minutes}}</p>
+            </div>
+
+            <div class="col-6">
+                <p><b>اجمالى الساعات:</b> {{employeePrinting.totalBasicHours}}</p>
+            </div>
+            <div class="col-6">
+                <p><b>اجمالى ساعات الوقت الاضافى:</b> {{employeePrinting.totalOverHours}}</p>
+            </div>
+            <div class="col-6">
+                <p><b>	راتب الساعة:</b> {{employeePrinting.hourSalary}}</p>
+            </div>
+            <div class="col-6">
+                <p><b>راتب الساعات الاضافية:</b> {{employeePrinting.totalOverHoursSalary|currency}}</p>
+            </div>
+            <div class="col-6">
+                <p><b>راتب الساعات الاساسية:</b> {{employeePrinting.totalBasicSalary|currency}}</p>
+            </div>
+            <div class="col-6">
+                <p><b>	خصم المكتب:</b> {{employeePrinting.discount|currency}}</p>
+            </div>
+            <div class="col-6">
+                <p><b>	الراتب المستحق:</b> {{employeePrinting.netSalry|currency}}</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <!--Bootstrap-->
+    <script src="./js/jquery-3.3.1.slim.min.js "></script>
+    <script src="./js/popper.js "></script>
+    <script src="./assets/bootstrap/js/bootstrap.min.js "></script>
+
+    <!--AngularJs-->
+    <script src="./js/services/date-time-service.js "></script>
+    <script src="./js/services/buttons-mange-table/smsButtons.js "></script>
+
+    <!--Excel Reder-->
+    <script src="./js/services/readers/excel/excel-reader.js "></script>
+    <script src="./js/services/readers/excel/jszip.js "></script>
+    <script src="./js/services/readers/excel/xlsx.full.min.js "></script>
+
+    <!--AngularJs-->
+    <script src="./js/angularJS.js "></script>
+    <script src="./js/angularjs/shared/ng.app.js "></script>
+    <script src="./js/angularjs/directives/sms-upload-files.js "></script>
+
+    <!--FOP-->
+    <script src="./js/angularjs/directives/fop/jsClass/fop.js "></script>
+    <script src="./js/angularjs/directives/fop/jsClass/paging-limt.js "></script>
+    <script src="./js/angularjs/directives/fop/jsClass/Paging.js "></script>
+    <script src="./js/angularjs/directives/fop/jsClass/sort.js "></script>
+    <script src="./js/angularjs/directives/fop/angularClass/sms-fop/sms-buttons-search.js "></script>
+    <script src="./js/angularjs/directives/fop/angularClass/sms-fop/sms-paging-select.js "></script>
+    <script src="./js/angularjs/directives/fop/angularClass/sms-fop/sms-paging.js "></script>
+    <script src="./js/angularjs/directives/fop/angularClass/sms-fop/sms-sort.js "></script>
+    <script src="./js/angularjs/directives/fop/angularClass/filters/customFilter.js "></script>
+
+
+    <script src="./js/services/resources.js"></script>
+    <script src="./js/services/bootstrapDateTimePickerService.js"></script>
+
+    <!--Anfualr For Index-->
+    <script src="./js/angularjs/views/index/controller.js "></script>
+
+</body>
+
+</html>
